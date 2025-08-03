@@ -4,18 +4,19 @@
     },
     "rpcState": {
         "type": "PLAYING",
-        "name": "Onyx.exe",
-        "details": "Managing Servers, Coding, Anime and Music is Life",
+        "name": "Content_Deleted",
+        "details": "Living Life - https://vertex-z.onrender.com/",
         "state": "Still Alive",
-        "url": "https://www.twitch.tv/Onyx",
+        "url": "https://discord.com/invite/hCTCQwPKd3",
         "timestamps": {
             "start": 0
         },
         "assets": {
-            "largeImage": "https://media.discordapp.net/attachments/1322657004250071152/1338517956929519636/onyx_pfp.jpg?ex=67ad59bd&is=67ac083d&hm=2dedb113cbee303c6a2b43dcd0ce58dfa46c46165e6f17a78a73ec39bc614317&=&width=409&height=409",
-            "largeText": "Code Wizard",
-            "smallImage": "https://media.discordapp.net/attachments/1322657004250071152/1338517989636444160/black-checkmark.gif?ex=67aeab45&is=67ad59c5&hm=d3d2a39afbf3e56115b695075097eeebcc4c4f3a697e5b7908f8807c6944a060&=&width=474&height=480",
-            "smallText": "RPC made by Onyx"
+            "largeImage": "https://cdn.discordapp.com/attachments/1373814307468349461/1401680102428905513/fa7d945227dcfa55851a1289ede89a8c.png?ex=689127d2&is=688fd652&hm=35ec715a30863b1ea5f8da0bd96a3067595663497efef77811a8bf54e0da1c4f&",
+            "largeText": "Code NOOOOOOOB",
+            "smallImage": "https://cdn.discordapp.com/emojis/1112022016770449538.gif?size=48",
+            "smallText": "Vertex Z"
         }
     }
 }
+
