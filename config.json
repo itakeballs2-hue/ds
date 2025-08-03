@@ -1,0 +1,21 @@
+{
+    "status": {
+        "type": "online"
+    },
+    "rpcState": {
+        "type": "PLAYING",
+        "name": "Onyx.exe",
+        "details": "Managing Servers, Coding, Anime and Music is Life",
+        "state": "Still Alive",
+        "url": "https://www.twitch.tv/Onyx",
+        "timestamps": {
+            "start": 0
+        },
+        "assets": {
+            "largeImage": "https://media.discordapp.net/attachments/1322657004250071152/1338517956929519636/onyx_pfp.jpg?ex=67ad59bd&is=67ac083d&hm=2dedb113cbee303c6a2b43dcd0ce58dfa46c46165e6f17a78a73ec39bc614317&=&width=409&height=409",
+            "largeText": "Code Wizard",
+            "smallImage": "https://media.discordapp.net/attachments/1322657004250071152/1338517989636444160/black-checkmark.gif?ex=67aeab45&is=67ad59c5&hm=d3d2a39afbf3e56115b695075097eeebcc4c4f3a697e5b7908f8807c6944a060&=&width=474&height=480",
+            "smallText": "RPC made by Onyx"
+        }
+    }
+}
