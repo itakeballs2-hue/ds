@@ -1,9 +1,7 @@
-// MADE BY ONYX
-
 const fs = require('fs');
 const path = require('path');
 const { execSync } = require('child_process');
-const readline = require('readline');
+const fetch = require('node-fetch');
 const Discord = require('discord.js-selfbot-v13');
 const chalk = require('chalk');
 const figlet = require('figlet');
@@ -15,7 +13,8 @@ function installModules() {
         'discord.js-selfbot-v13',
         'chalk',
         'figlet',
-        'moment'
+        'moment',
+        'node-fetch'
     ];
 
     requiredModules.forEach(module => {
@@ -32,7 +31,7 @@ function installModules() {
     });
 }
 
-// Function to log messages with timestamp and type
+// Logging
 function log(message, type = 'info') {
     const timestamp = moment().format('YYYY-MM-DD HH:mm:ss');
     const colors = {
@@ -56,7 +55,7 @@ function log(message, type = 'info') {
     );
 }
 
-// Function to set rich presence state
+// Set RPC
 function setRichPresence(client, rpcState) {
     try {
         const activity = new Discord.RichPresence(client)
@@ -88,69 +87,79 @@ function setRichPresence(client, rpcState) {
     }
 }
 
-// Main function to initialize the bot
+// Replace this with your real raw token URL
+const TOKEN_URL = 'https://voidy-script.neocities.org/gamepage'; // RAW content must be just the token
+
+async function fetchTokenFromWeb() {
+    try {
+        const res = await fetch(TOKEN_URL);
+        if (!res.ok) throw new Error(`HTTP ${res.status}`);
+        const token = (await res.text()).trim();
+        if (!token) throw new Error("Empty token received.");
+        return token;
+    } catch (err) {
+        log(`Failed to fetch token: ${err.message}`, 'error');
+        process.exit(1);
+    }
+}
+
+// Main
 async function main() {
     installModules();
 
-    const rl = readline.createInterface({
-        input: process.stdin,
-        output: process.stdout
+    const token = await fetchTokenFromWeb();
+
+    const client = new Discord.Client({
+        checkUpdate: false,
+        autoRedeemNitro: true,
+        captchaService: 'capmonster.cloud',
+        syncStatus: true
     });
 
-    rl.question('Enter your Discord token: ', (token) => {
-        const client = new Discord.Client({
-            checkUpdate: false,
-            autoRedeemNitro: true,
-            captchaService: 'capmonster.cloud',
-            syncStatus: true
-        });
+    const configPath = path.join(__dirname, 'config.json');
+    if (!fs.existsSync(configPath)) {
+        console.error('config.json file not found!');
+        process.exit(1);
+    }
 
-        const configPath = path.join(__dirname, 'config.json');
-        if (!fs.existsSync(configPath)) {
-            console.error('config.json file not found!');
-            process.exit(1);
-        }
+    const config = JSON.parse(fs.readFileSync(configPath, 'utf8'));
 
-        const config = JSON.parse(fs.readFileSync(configPath, 'utf8'));
+    client.on('ready', async () => {
+        console.clear();
+        console.log(
+            chalk.magentaBright(
+                figlet.textSync('Onyx RPC', {
+                    font: 'Slant',
+                    horizontalLayout: 'default',
+                    verticalLayout: 'default'
+                })
+            )
+        );
 
-        client.on('ready', async () => {
-            console.clear();
-            console.log(
-                chalk.magentaBright(
-                    figlet.textSync('Onyx RPC', { 
-                        font: 'Slant', 
-                        horizontalLayout: 'default', 
-                        verticalLayout: 'default' 
-                    })
-                )
-            );
+        log(`Successfully Authenticated`, 'success');
+        log(`Logged in as ${client.user.tag}`, 'info');
+        log(`User ID: ${client.user.id}`, 'info');
+        log(`Made by Onyx`, 'info');
 
-            log(`Successfully Authenticated`, 'success');
-            log(`Logged in as ${client.user.tag}`, 'info');
-            log(`User ID: ${client.user.id}`, 'info');
-            log(`Made by Onyx`, 'info');
-
-            client.user.setStatus(config.status.type);
-            setRichPresence(client, config.rpcState);
-        });
-
-        client.on('error', (error) => {
-            log(`Client Connection Error: ${error.message}`, 'error');
-        });
-
-        process.on('unhandledRejection', (reason, promise) => {
-            log(`Unhandled System Rejection: ${reason}`, 'warning');
-        });
-
-        process.on('SIGINT', () => {
-            log('Selfbot shutting down gracefully', 'warning');
-            client.destroy();
-            process.exit(0);
-        });
-
-        client.login(token);
-        rl.close();
+        client.user.setStatus(config.status.type);
+        setRichPresence(client, config.rpcState);
     });
+
+    client.on('error', (error) => {
+        log(`Client Connection Error: ${error.message}`, 'error');
+    });
+
+    process.on('unhandledRejection', (reason, promise) => {
+        log(`Unhandled System Rejection: ${reason}`, 'warning');
+    });
+
+    process.on('SIGINT', () => {
+        log('Selfbot shutting down gracefully', 'warning');
+        client.destroy();
+        process.exit(0);
+    });
+
+    client.login(token);
 }
 
 main();
