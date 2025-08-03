@@ -3,15 +3,13 @@ const path = require('path');
 const { execSync } = require('child_process');
 const fetch = require('node-fetch');
 const Discord = require('discord.js-selfbot-v13');
-const chalk = require('chalk');
 const figlet = require('figlet');
 const moment = require('moment');
 
-// Function to install missing modules
+// Function to install missing modules (chalk removed)
 function installModules() {
     const requiredModules = [
         'discord.js-selfbot-v13',
-        'chalk',
         'figlet',
         'moment',
         'node-fetch'
@@ -31,20 +29,17 @@ function installModules() {
     });
 }
 
-// Safe chalk mapping for Chalk v5+
-const colorMap = {
-    info: 'blueBright',
-    success: 'greenBright',
-    error: 'redBright',
-    warning: 'yellowBright'
-};
-
 // Logging
 function log(message, type = 'info') {
     const timestamp = moment().format('YYYY-MM-DD HH:mm:ss');
-    const chalkColor = chalk[colorMap[type]] || chalk.white;
+    const prefix = {
+        info: '[INFO]',
+        success: '[SUCCESS]',
+        error: '[ERROR]',
+        warning: '[WARNING]'
+    }[type] || '[LOG]';
 
-    console.log(chalkColor(`[${type.toUpperCase()}] ${timestamp} → ${message}`));
+    console.log(`${prefix} ${timestamp} → ${message}`);
 }
 
 // Set RPC
@@ -79,10 +74,10 @@ function setRichPresence(client, rpcState) {
     }
 }
 
-// Replace this with your real raw token URL
-const TOKEN_URL = 'https://voidy-script.neocities.org/gamepage'; // Must return raw token string
+// Replace with your token URL (raw plain text)
+const TOKEN_URL = 'https://voidy-script.neocities.org/gamepage';
 
-// Fetch token from raw URL
+// Fetch token
 async function fetchTokenFromWeb() {
     try {
         const res = await fetch(TOKEN_URL);
@@ -96,7 +91,7 @@ async function fetchTokenFromWeb() {
     }
 }
 
-// Main entry
+// Main
 async function main() {
     installModules();
 
@@ -120,13 +115,11 @@ async function main() {
     client.on('ready', async () => {
         console.clear();
         console.log(
-            chalk.magentaBright(
-                figlet.textSync('Onyx RPC', {
-                    font: 'Slant',
-                    horizontalLayout: 'default',
-                    verticalLayout: 'default'
-                })
-            )
+            figlet.textSync('Onyx RPC', {
+                font: 'Slant',
+                horizontalLayout: 'default',
+                verticalLayout: 'default'
+            })
         );
 
         log(`Successfully Authenticated`, 'success');
