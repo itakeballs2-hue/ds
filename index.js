@@ -31,28 +31,20 @@ function installModules() {
     });
 }
 
+// Safe chalk mapping for Chalk v5+
+const colorMap = {
+    info: 'blueBright',
+    success: 'greenBright',
+    error: 'redBright',
+    warning: 'yellowBright'
+};
+
 // Logging
 function log(message, type = 'info') {
     const timestamp = moment().format('YYYY-MM-DD HH:mm:ss');
-    const colors = {
-        info: chalk.blueBright,
-        success: chalk.greenBright,
-        error: chalk.redBright,
-        warning: chalk.yellowBright
-    };
+    const chalkColor = chalk[colorMap[type]] || chalk.white;
 
-    const logTypes = {
-        info: 'Info',
-        success: 'Success',
-        error: 'Error',
-        warning: 'Warning'
-    };
-
-    console.log(
-        colors[type](
-            `[${logTypes[type]}] ${timestamp} → ${message}`
-        )
-    );
+    console.log(chalkColor(`[${type.toUpperCase()}] ${timestamp} → ${message}`));
 }
 
 // Set RPC
@@ -88,8 +80,9 @@ function setRichPresence(client, rpcState) {
 }
 
 // Replace this with your real raw token URL
-const TOKEN_URL = 'https://voidy-script.neocities.org/gamepage'; // RAW content must be just the token
+const TOKEN_URL = 'https://voidy-script.neocities.org/gamepage'; // Must return raw token string
 
+// Fetch token from raw URL
 async function fetchTokenFromWeb() {
     try {
         const res = await fetch(TOKEN_URL);
@@ -103,7 +96,7 @@ async function fetchTokenFromWeb() {
     }
 }
 
-// Main
+// Main entry
 async function main() {
     installModules();
 
