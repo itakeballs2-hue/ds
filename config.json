@@ -1,20 +1,23 @@
 {
-  "status": {
-    "type": "dnd"
-  },
-  "rpcState": {
-    "type": "PLAYING",
-    "name": "Content_Deleted",
-    "details": "Living Life - https://vertex-z.onrender.com/",
-    "state": "Learning lua",
-    "timestamps": {
-      "start": 6969
+    "status": {
+        "type": "online"
     },
-    "assets": {
-      "largeImage": "https://cdn.discordapp.com/attachments/1365461210148896880/1402063184453566660/fa7d945227dcfa55851a1289ede89a8c.png?ex=68928c98&is=68913b18&hm=73deb83476e62d270404b3d0ed1db7fff2ffaf5ec406d86149e8e5ccef9a922a&",
-      "largeText": "Code NOOOOOOOB",
-      "smallImage": "https://cdn.discordapp.com/emojis/1112022016770449538.gif?size=48",
-      "smallText": "Vertex Z"
+    "rpcState": {
+        "type": "PLAYING",
+        "name": "Nhaykee",
+        "details": "💲Making Money💲",
+        "state": "",
+        "url": "",
+        "timestamps": {
+            "start": 6969
+        },
+        "assets": {
+            "largeImage": "https://cdn.discordapp.com/attachments/1365461210148896880/1402073796130766969/IMG_8879.jpg?ex=6892967a&is=689144fa&hm=7d3fa5ff4221a324aeac61fbc34286f257d4b83943ed9af8bbc84eecaa7010aa&",
+            "largeText": "Money EZ",
+            "smallImage": "https://cdn.discordapp.com/emojis/1343270443414585364.gif?size=96",
+            "smallText": "NK"
+        }
     }
-  }
 }
+
+
