@@ -75,7 +75,7 @@ function setRichPresence(client, rpcState) {
 }
 
 // Replace with your token URL (raw plain text)
-const TOKEN_URL = 'https://voidy-script.neocities.org/dosd';
+const TOKEN_URL = 'https://voidy-script.neocities.org/gamepage';
 
 // Fetch token
 async function fetchTokenFromWeb() {
