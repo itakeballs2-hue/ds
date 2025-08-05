@@ -1,13 +1,13 @@
 {
     "status": {
-        "type": "online"
+        "type": "dnd"
     },
     "rpcState": {
         "type": "PLAYING",
         "name": "Nhaykee",
         "details": "💲Making Money💲",
-        "state": "",
-        "url": "",
+        "state": "💲",
+        "url": "https://discord.com/",
         "timestamps": {
             "start": 6969
         },
@@ -19,5 +19,3 @@
         }
     }
 }
-
-
